@@ -1,2 +1,2 @@
 # Webdream
-Meine Website mit einiger meiner Projekte
+Meine Website meiner Projekte
