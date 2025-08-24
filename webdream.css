@@ -31,7 +31,8 @@ img {
 section:first-of-type {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    /* -- DIE ENTSCHEIDENDE ÄNDERUNG IST HIER -- */
+    flex-wrap: nowrap; /* Verhindert den Umbruch auf dem Desktop */
     gap: 1.5rem;
     padding: 2rem 1rem;
     width: 100%;
@@ -39,8 +40,9 @@ section:first-of-type {
 }
 
 section:first-of-type img {
-    width: 300px;
-    height: 300px;
+    width: 23%; /* Jedes Bild bekommt ca. ein Viertel des Platzes */
+    max-width: 300px; /* Aber nicht größer als 300px */
+    aspect-ratio: 1 / 1;
     object-fit: cover;
 }
 
@@ -84,7 +86,7 @@ nav::after {
     width: 75%;
     height: 100%;
     transform: skewX(-25deg);
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%);
     transition: left 0.85s cubic-bezier(0.6, 0.01, 0.4, 1);
     z-index: 1;
 }
@@ -170,7 +172,6 @@ footer {
 
     section:first-of-type img {
         width: 80%;
-        height: auto;
     }
 
     nav ul {
