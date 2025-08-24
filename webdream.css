@@ -17,12 +17,25 @@ header {
     text-align: center;
 }
 
+h1, h3, h4 {
+    text-shadow: goldenrod 2px 5px 8px;
+}
+
+img {
+    border: 2px goldenrod solid;
+    border-radius: 1em;
+    max-width: 100%;
+    height: auto;
+}
+
 section:first-of-type {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.5rem;
-    padding: 0 1rem;
+    padding: 2rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 section:first-of-type img {
@@ -31,10 +44,53 @@ section:first-of-type img {
     object-fit: cover;
 }
 
+@keyframes liquid-flow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 nav {
-    text-align: center;
-    width: 100%;
-    padding: 2rem 0;
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(65, 84, 102, 0.15);
+    isolation: isolate;
+    margin: 2rem auto;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+nav::before {
+    content: '';
+    position: absolute;
+    inset: -50px;
+    z-index: -2;
+    background: radial-gradient(circle at 30% 30%, #58ACFA, goldenrod, transparent 40%),
+                radial-gradient(circle at 70% 80%, #E6E6E6, transparent 30%);
+    animation: liquid-flow 25s infinite linear;
+    opacity: 0.4;
+}
+
+nav::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -200%;
+    width: 75%;
+    height: 100%;
+    transform: skewX(-25deg);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    transition: left 0.85s cubic-bezier(0.6, 0.01, 0.4, 1);
+    z-index: 1;
+}
+
+nav:hover::after {
+    left: 150%;
 }
 
 nav ul {
@@ -42,32 +98,41 @@ nav ul {
     padding: 0;
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 1rem;
+    position: relative;
+    z-index: 2;
 }
 
 nav ul li {
+    margin: 0;
+    padding: 0;
 }
 
-nav a:link, nav a:visited {
+nav a:link,
+nav a:visited {
     display: inline-block;
-    border-radius: 0.5em;
     padding: 0.8rem 1.5rem;
+    border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
-    text-shadow: goldenrod 2px 5px 8px;
-    box-shadow: beige 2px 2px 2px 2px;
-    background-color: #58ACFA;
-    color: #FFFFFF;
-    transition: background-color 0.3s;
+    color: #1a2533;
+    text-shadow: none;
+    transition: all 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 5px rgba(65, 84, 102, 0.08);
 }
 
 nav a:hover,
 nav a:active,
 nav a:focus {
-    color: bisque;
-    background-color: #4188c7;
+    color: #006567;
+    transform: translateY(-4px) scale(1.05);
+    background-color: #fff;
+    box-shadow: 0 8px 15px rgba(65, 84, 102, 0.15);
 }
 
 main {
@@ -76,17 +141,9 @@ main {
     box-sizing: border-box;
 }
 
-.content-section {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 2rem;
-}
-
 .ich {
     float: left;
     margin-right: 2rem;
-    border: 2px goldenrod solid;
     border-radius: 1em;
     width: 300px;
     height: 400px;
@@ -99,24 +156,6 @@ footer {
     color: #58ACFA;
     text-align: center;
     margin-top: 2rem;
-}
-
-img {
-    border: 2px goldenrod solid;
-    border-radius: 1em;
-    position: relative;
-    max-width: 100%;
-    height: auto;
-}
-
-h1, h3, h4 {
-    text-shadow: goldenrod 2px 5px 8px;
-}
-
-@media (max-width: 1024px) {
-    nav ul {
-        gap: 0.8rem;
-    }
 }
 
 @media (max-width: 768px) {
@@ -136,17 +175,12 @@ h1, h3, h4 {
 
     nav ul {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
     }
-
+    
     nav ul li {
-        width: 80%;
-    }
-
-    nav a:link, nav a:visited {
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
+       width: 100%;
+       text-align: center;
     }
 
     .ich {
